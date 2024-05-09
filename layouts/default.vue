@@ -1,9 +1,18 @@
 <template>
-  <div class=" min-h-screen" id="app">
+  <div class=" min-h-screen" id="app" :dir="head.htmlAttrs.dir">
     <app-header></app-header>
-    <slot />
+    <div class=" pt-24 px-4 md:px-14">
+      <slot />
+    </div>
   </div>
 </template>
+<script setup>
+const head = useLocaleHead({
+  addDirAttribute: true,
+  identifierAttribute: 'id',
+  addSeoAttributes: true
+})
+</script>
 <style>
 #app {
     background-image: url('@/assets/images/backgraund2.jpg');

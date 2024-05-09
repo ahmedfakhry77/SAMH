@@ -6,7 +6,7 @@
       @blur="isOptionsExpanded = false"
     >
       <span class="text-sm mx-1 flex flex-col items-start font-semibold">
-        <span> Select Language </span>
+        <span> {{ $t("ChangeLanguage") }}</span>
       </span>
       <svg
         fill="none"
@@ -33,18 +33,17 @@
     >
       <ul
         v-show="isOptionsExpanded"
-        class="absolute left-0 top-14 mb-4 bg-white rounded-lg shadow-lg overflow-hidden w-full z-40"
+        class="absolute rtl:right-0 ltr:left-0 top-14 mb-4 bg-white rounded-lg shadow-lg overflow-hidden min-w-36 w-full py-2 z-40"
       >
         <li
           v-for="(option, index) in options"
           :key="index"
-          :class="{ active: isSelected(option) }"
-          class="p-4 cursor-pointer transition-colors duration-300 hover:bg-gray-200 text-sm"
-          @click="setOption(option)"
+          class="px-4 cursor-pointer transition-colors duration-300 hover:bg-gray-200 text-sm"
+          @click="setOption(option.code)"
         >
-          <div class="flex  items-center gap-2"> 
-            <img :src="option.image" alt="">
-            <span class="font-bold">{{ option.name }}</span>
+          <div class="flex items-center gap-2">
+            <img :src="option.image" alt="" />
+            <span class="font-bold">{{ $t(option.name) }}</span>
           </div>
         </li>
       </ul>
@@ -54,32 +53,29 @@
 
 <script setup>
 import { ref, getCurrentInstance } from "vue";
-import Arabic from "@/assets/images/saudi-arabia.png"
-import English from "@/assets/images/united-kingdom.png"
+const { locale, setLocale } = useI18n();
+import Arabic from "@/assets/images/saudi-arabia.png";
+import English from "@/assets/images/united-kingdom.png";
+
 const options = ref([
   {
     name: "Arabic",
     id: 1,
     image: Arabic,
+    code: "ar",
   },
   {
     name: "English",
     id: 2,
     image: English,
+    code: "en",
   },
 ]);
 
 const isOptionsExpanded = ref(false);
-const currentOption = ref({ name: "", id: 0 });
-
-const instance = getCurrentInstance();
 
 const setOption = (option) => {
-  currentOption.value = option;
-  instance.emit("changeFilter", option);
-};
-const isSelected = (option) => {
-  return currentOption.value && currentOption.value.id === option.id;
+  setLocale(option);
 };
 </script>
 
