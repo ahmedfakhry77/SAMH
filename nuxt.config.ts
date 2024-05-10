@@ -27,6 +27,7 @@ export default defineNuxtConfig({
         langDir: "translations/",
         locale: "ar",
         defaultLocale: "ar",
+        ssr: false
       },
     ],
   ],
