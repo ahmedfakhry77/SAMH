@@ -14,6 +14,7 @@ const head = useLocaleHead({
 })
 </script>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
 body {
     background-image: url('@/assets/images/backgraund2.jpg');
     background-repeat: no-repeat;
@@ -21,6 +22,7 @@ body {
     background-position: center;
     background-size: 100vw 100vh;
     min-height: 100vh;
+    font-family: "Cairo", sans-serif;
   }
   @media (max-width: 1024px) {
     #app {

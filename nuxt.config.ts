@@ -2,11 +2,12 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   plugins: [
-    '~/plugins/direction-control',  // your plugins file name
+    "~/plugins/direction-control", // your plugins file name
     // other plugins
   ],
   modules: [
     "@nuxtjs/tailwindcss",
+    "@samk-dev/nuxt-vcalendar",
     [
       "@nuxtjs/i18n",
       {
@@ -27,7 +28,7 @@ export default defineNuxtConfig({
         langDir: "translations/",
         locale: "ar",
         defaultLocale: "ar",
-        ssr: false
+        ssr: false,
       },
     ],
   ],
